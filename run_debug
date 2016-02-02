@@ -1,0 +1,1 @@
+DEBUG=zopaas:* npm start
