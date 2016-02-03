@@ -3,11 +3,18 @@ var path = require('path');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var helmet = require('helmet');
 
 var routes = require('./routes/index');
 
 var app = express();
 
+global.dbg = true;
+global.rootDir = path.resolve(__dirname);
+
+
+// Security
+app.use(helmet());
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());

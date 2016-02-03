@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   var url = req.body.url;
   var options = {};
   options.iterations = req.body.iterations || 15;
@@ -17,6 +16,7 @@ router.post('/', function(req, res, next) {
 
   zopaas(url, options, function(err, data) {
     if (!err) {
+      data.url = 'http://' + req.headers.host + '/' + data.url;
       res.send(data);
     } else {
       res.send(err);
@@ -24,6 +24,5 @@ router.post('/', function(req, res, next) {
   });
 
 });
-
 
 module.exports = router;
